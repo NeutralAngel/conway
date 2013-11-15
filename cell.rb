@@ -6,16 +6,10 @@ class Cell
 
   def alive?
     if @living then
-      case @neighbour_count
-      when 0..1
-        @living = false
-      when 2..3
-        @living = true
-      else
-        @living = false
-      end
+      @living = false unless (2..3).include?(@neighbour_count)
+      return @living
     else
-      if @neighbour_count = 3
+      if @neighbour_count == 3
         @living = true
       end
     end
