@@ -6,6 +6,14 @@ require_relative 'cell_testing_methods'
 
 class TestMeme < Minitest::Test
 
+  def test_draw_method
+    cell = Cell.new(0,0)
+    assert cell.draw == [0,9,9,9,0,0,9,0]
+    cell = Cell.new(1,0)
+    assert cell.draw == [10,9,19,9,10,0,19,0]
+
+  end
+
   describe Cell do
     include CellTestingMethods
 
