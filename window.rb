@@ -3,15 +3,28 @@ require_relative 'gameboard'
 
 class MyWindow < Gosu::Window
   def initialize
+    if ARGV[0].downcase.eql?("help")
+      puts "Accepted arguments: glider, gosper, acorn, ten"
+      abort
+    end
     super 1000, 1000, false
     self.caption = "Conway\'s Game of Life"
     @color = Gosu::Color.new(0xFF1EB1FA)
     @black = Gosu::Color.new(0x00000000)
     @gameboard = GameBoard.new(100)
 
-    create_glider
-
-
+    case ARGV[0]
+    when "glider"
+      create_glider
+    when "gosper"
+      create_gosper
+    when "acorn"
+      create_acorn
+    when "ten"
+      ten_cell
+    else
+      create_infinite
+    end
   end
 
   def create_cell(x,y)
@@ -34,11 +47,11 @@ class MyWindow < Gosu::Window
     end
   end
 
-  def draw_it(my_array, color=@color)
-    draw_quad(my_array[0],my_array[1],color,
-              my_array[2],my_array[3],color,
-              my_array[4],my_array[5],color,
-              my_array[6],my_array[7],color,
+  def draw_it(coordinates, color=@color)
+    draw_quad(coordinates[:left_x],coordinates[:top_y],color,
+              coordinates[:right_x],coordinates[:top_y],color,
+              coordinates[:left_x],coordinates[:bottom_y],color,
+              coordinates[:right_x],coordinates[:bottom_y],color,
               0)
   end
 
@@ -119,14 +132,7 @@ class MyWindow < Gosu::Window
     create_cell(75,53)
   end
 
-  def four_square
-    create_cell(50,50)
-    create_cell(50,53)
-    create_cell(51,51)
-    create_cell(51,52)
-  end
-
-  def create_infinite_10_cell
+  def ten_cell
     create_cell(50,50)
     create_cell(52,50)
     create_cell(52,51)

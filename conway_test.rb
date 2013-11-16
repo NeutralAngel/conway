@@ -8,10 +8,17 @@ class TestMeme < Minitest::Test
 
   def test_draw_method
     cell = Cell.new(0,0)
-    assert cell.draw == [0,9,9,9,0,0,9,0]
+    coordinates = cell.draw
+    coordinates[:left_x] == 0
+    coordinates[:right_x] == 9
+    coordinates[:top_y] == 9
+    coordinates[:bottom_y] == 0
     cell = Cell.new(1,0)
-    assert cell.draw == [10,9,19,9,10,0,19,0]
-
+    coordinates = cell.draw
+    coordinates[:left_x] == 10
+    coordinates[:right_x] == 19
+    coordinates[:top_y] == 9
+    coordinates[:bottom_y] == 0
   end
 
   describe Cell do

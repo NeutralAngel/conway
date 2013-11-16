@@ -28,7 +28,7 @@ class Cell
     right_x = ((@x + 1) * 10) - 1
     top_y = ((@y + 1) * 10) - 1
     bottom_y = @y * 10
-    return [left_x, top_y, right_x, top_y, left_x, bottom_y, right_x, bottom_y]
+    {left_x: left_x, right_x: right_x, top_y: top_y, bottom_y: bottom_y}
   end
 
 
