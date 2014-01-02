@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require_relative 'gameboard'
 
 
-class TestMeme < Minitest::Test
+class GameBoardTest < Minitest::Test
 
   def setup
     @gameboard = GameBoard.new(3)

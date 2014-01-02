@@ -4,7 +4,7 @@ require_relative 'cell'
 require_relative 'cell_testing_methods'
 
 
-class TestMeme < Minitest::Test
+class CellTest < Minitest::Test
 
   def test_draw_method
     cell = Cell.new(0,0)
